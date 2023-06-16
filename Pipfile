@@ -8,7 +8,6 @@ django = "<4"
 django-shortcuts = "*"
 gunicorn = "*"
 pillow = "*"
-django-rest-framework = "*"
 djangorestframework = "*"
 
 [dev-packages]
