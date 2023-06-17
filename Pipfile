@@ -9,6 +9,9 @@ django-shortcuts = "*"
 gunicorn = "*"
 pillow = "*"
 djangorestframework = "*"
+dj-database-url = "==0.5.0"
+psycopg2-binary = "*"
+dj3-cloudinary-storage = "*"
 
 [dev-packages]
 
