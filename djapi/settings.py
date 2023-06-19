@@ -77,6 +77,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'djapi.wsgi.application'
 
 AUTH_USER_MODEL = 'account.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
