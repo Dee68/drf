@@ -8,6 +8,8 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from rest_framework_simplejwt.tokens import RefreshToken
+import datetime
 
 
 class UserManager(BaseUserManager):
@@ -38,6 +40,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     password1 = models.CharField(max_length=20, default='password')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -46,7 +50,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
     def tokens(self):
-        return ''
+        refresh = RefreshToken.for_user(self)
+        return {
+            'refresh':str(refresh),
+            'access':str(refresh.access_token)
+        }
     
     def __str__(self):
         return self.username
